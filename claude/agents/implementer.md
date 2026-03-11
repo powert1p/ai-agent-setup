@@ -9,8 +9,6 @@ permissionMode: dontAsk
 skills:
   - superpowers:test-driven-development
   - superpowers:verification-before-completion
-  - frontend-design
-  - webapp-testing
   - modern-python
 ---
 
@@ -112,7 +110,7 @@ skills:
 ## Skills (активируй при релевантной задаче)
 - superpowers:test-driven-development — ОБЯЗАТЕЛЬНО для каждой задачи
 - superpowers:verification-before-completion — ОБЯЗАТЕЛЬНО перед "готово"
-- frontend-design — при UI работе
-- vercel-react-best-practices — при React компонентах
-- web-design-guidelines — при вёрстке, a11y
-- modern-python (trailofbits) — при Python коде
+- modern-python — при Python коде
+- wsh-fastapi-templates — при FastAPI endpoints
+- wsh-responsive-design — при вёрстке
+- wsh-tailwind-design-system — при Tailwind UI

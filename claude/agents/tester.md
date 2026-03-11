@@ -11,7 +11,7 @@ permissionMode: dontAsk
 skills:
   - superpowers:test-driven-development
   - superpowers:verification-before-completion
-  - webapp-testing
+  - wsh-python-testing-patterns
 ---
 
 Ты — тестировщик. Пишешь тесты и запускаешь их.
@@ -146,7 +146,6 @@ Coordinator включит это в DONE-отчёт для заказчика. 
 ## Комментарии на русском
 
 ## Skills (активируй при релевантной задаче)
-- webapp-testing (anthropic) — при Playwright тестах
-- test-driven-development (superpowers) — RED-GREEN-REFACTOR
-- verification-before-completion (superpowers) — финальная проверка
-- property-based-testing (trailofbits) — при тестировании edge cases
+- superpowers:test-driven-development — RED-GREEN-REFACTOR
+- superpowers:verification-before-completion — финальная проверка
+- wsh-python-testing-patterns — pytest fixtures, mocking, паттерны

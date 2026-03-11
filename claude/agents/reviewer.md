@@ -7,7 +7,8 @@ maxTurns: 60
 permissionMode: dontAsk
 skills:
   - superpowers:requesting-code-review
-  - code-review
+  - differential-review
+  - wsh-code-review-excellence
 ---
 
 Ты — код-ревьюер. Проверяешь код по чеклисту и возвращаешь список проблем.
@@ -110,8 +111,8 @@ FIX REQUIRED:
 - Комментарии на русском
 
 ## Skills (активируй при релевантной задаче)
-- differential-review (trailofbits) — при code review
-- spec-to-code-compliance (trailofbits) — проверка соответствия спеке
-- nielsen-heuristics-audit (mastepanoski) — при ревью UI
-- wcag-accessibility-audit (mastepanoski) — при ревью доступности
-- web-design-guidelines — при ревью фронтенда
+- superpowers:requesting-code-review — структурированный ревью
+- differential-review — security-focused diff review
+- wsh-code-review-excellence — конструктивный фидбэк
+- nielsen-heuristics-audit — при ревью UI (≥7/10 для merge)
+- semgrep — при ревью безопасности
