@@ -30,7 +30,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {
-        "MEMORY_FILE_PATH": "$HOME/.claude/memory/knowledge-graph.jsonl"
+        "MEMORY_FILE_PATH": "/Users/esetseitkamal/.claude/memory/knowledge-graph.jsonl"
       }
     }
   }

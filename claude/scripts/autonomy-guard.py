@@ -97,7 +97,11 @@ ALLOW_PATTERNS = [
 
 
 def main():
-    hook_input = json.loads(sys.stdin.read())
+    try:
+        hook_input = json.loads(sys.stdin.read())
+    except (json.JSONDecodeError, ValueError):
+        # Некорректный input — пропускаем, не блокируем
+        sys.exit(0)
 
     # Предотвращение бесконечного цикла
     if hook_input.get("stop_hook_active"):
