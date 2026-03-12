@@ -64,6 +64,17 @@
         ]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"additionalContext\": \"ОБЯЗАТЕЛЬНО: Если brainstorming ещё НЕ вызван в этой сессии — invoke Skill(brainstorming) ПЕРВЫМ ДЕЙСТВИЕМ. CLAUDE.md override: brainstorming applies to ALL messages.\"}'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "PreCompact": [
       {
         "hooks": [
