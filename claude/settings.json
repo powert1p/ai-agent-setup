@@ -27,6 +27,15 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash ~/.claude/hooks/check-brainstorming.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
             "command": "python3 ~/.claude/scripts/autonomy-guard.py",
             "timeout": 10
           }
