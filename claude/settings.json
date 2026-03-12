@@ -78,7 +78,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"additionalContext\": \"ОБЯЗАТЕЛЬНО: Если brainstorming ещё НЕ вызван в этой сессии — invoke Skill(brainstorming) ПЕРВЫМ ДЕЙСТВИЕМ. CLAUDE.md override: brainstorming applies to ALL messages.\"}'",
+            "command": "bash ~/.claude/hooks/reset-brainstorming.sh",
             "timeout": 5
           }
         ]

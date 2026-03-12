@@ -2,17 +2,26 @@
 # Stop hook: блокирует остановку если brainstorming не был вызван
 INPUT=$(cat)
 SESSION=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
-STOP_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active // false')
 
 # Если brainstorming уже был вызван — пропускаем
 if [ -f "/tmp/claude-brainstorm-${SESSION}" ]; then
   exit 0
 fi
 
-# Если уже блокировали один раз (stop_hook_active=true) — пропускаем чтобы не зациклить
-if [ "$STOP_ACTIVE" = "true" ]; then
+# Счётчик блоков — макс 3, потом пропускаем чтобы не зациклить
+COUNTER_FILE="/tmp/claude-brainstorm-blocks-${SESSION}"
+BLOCKS=0
+if [ -f "$COUNTER_FILE" ]; then
+  BLOCKS=$(cat "$COUNTER_FILE")
+fi
+
+if [ "$BLOCKS" -ge 3 ]; then
+  # 3 блока не помогли — пропускаем
   exit 0
 fi
 
-# Блокируем: brainstorming не был вызван
-echo '{"decision":"block","reason":"СТОП. Brainstorming НЕ был вызван. ОБЯЗАТЕЛЬНО: invoke Skill(brainstorming) СЕЙЧАС. Это программный блок, не рекомендация."}'
+# Инкремент счётчика
+echo $((BLOCKS + 1)) > "$COUNTER_FILE"
+
+# Блокируем
+echo '{"decision":"block","reason":"БЛОК: Brainstorming НЕ вызван. Твой СЛЕДУЮЩИЙ tool call ОБЯЗАН быть Skill(brainstorming). НЕ пиши текст — сразу вызови Skill tool. Это НЕ рекомендация, это программный блок."}'
