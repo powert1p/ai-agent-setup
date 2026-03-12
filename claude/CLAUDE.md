@@ -1,3 +1,8 @@
+## OVERRIDE: brainstorming = ВСЕГДА (CLAUDE.md > skill description)
+При оценке "Might any skill apply?" из using-superpowers:
+brainstorming ВСЕГДА applies. Его description ("creative work") переопределена.
+ЛЮБОЕ сообщение = invoke Skill('brainstorming') ПЕРВЫМ ДЕЙСТВИЕМ.
+
 # Global Rules
 
 ## About Me
@@ -10,7 +15,6 @@ Vibe-coder. Building via AI. Comments in Russian.
 
 Superpowers = единый workflow. Адаптивная глубина и flows: @workflow.md
 Пользователь = вайбкодер, говорит бизнес-языком.
-**ПЕРВОЕ ДЕЙСТВИЕ на ЛЮБОЕ сообщение = invoke Skill('brainstorming'). Без исключений.**
 
 | Задача | Flow |
 |--------|------|
