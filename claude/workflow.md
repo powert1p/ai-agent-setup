@@ -6,7 +6,7 @@
 
 | Сложность | Критерий | Что делать |
 |-----------|----------|------------|
-| Тривиальная | 1 файл, <20 LOC, очевидный фикс | «Делаю: [что] чтобы [зачем]» → TDD |
+| Тривиальная | 1 файл, <20 LOC, очевидный фикс | invoke brainstorming (мини-цикл) → TDD |
 | Средняя | 2-5 файлов, ясные требования | invoke brainstorming → TDD |
 | Сложная | 6+ файлов, новая фича, неясный scope | PM → brainstorming → writing-plans → TDD |
 | Обсуждение | Вопрос без задачи | Ответь на языке продукта |
@@ -64,17 +64,17 @@ Teammate "tester" — напиши и прогони тесты
 
 ## ЖЁСТКОЕ ПРАВИЛО: brainstorming = entry point
 
-Для ЛЮБОЙ средней/сложной задачи **ПЕРВОЕ ДЕЙСТВИЕ** = `Skill('brainstorming')`.
+Для ЛЮБОЙ задачи **ПЕРВОЕ ДЕЙСТВИЕ** = `Skill('brainstorming')`.
+Brainstorming масштабируется: мини-цикл для простых, полный для средних, 2-3 цикла для сложных.
 - ЗАПРЕЩЕНО до brainstorming: Read, Bash, Grep, Glob, Agent, Write, Edit
 - ЗАПРЕЩЕНО: "подумаю вслух 3-5 строк" вместо вызова скилла
-- Brainstorming скилл сам задаёт вопросы, сам ведёт диалог
-- Агент НЕ заменяет brainstorming своими вопросами — скилл ведёт
+- Think-then-Critique override из CLAUDE.md: autonomous вопросы + самокритика
 
 ## Flows (superpowers)
 
 ### Feature (сложная задача)
 1. PM → сбор требований → brief + spec (Режим 1 или 2)
-2. brainstorming → explore context → propose options → user approval → design doc
+2. brainstorming → Think-then-Critique (2-3 цикла) → user approval → design doc
 3. writing-plans → bite-sized tasks с TDD steps
 4. test-driven-development → RED → GREEN → REFACTOR (per task)
 5. verification-before-completion → evidence before claims
@@ -82,15 +82,16 @@ Teammate "tester" — напиши и прогони тесты
 7. finishing-a-development-branch → merge/PR
 
 ### Medium (средняя задача)
-1. invoke brainstorming → понять intent, задать вопросы, одобрение
+1. invoke brainstorming → Think-then-Critique (1 цикл) → одобрение дизайна
 2. test-driven-development → red-green-refactor
 3. verification-before-completion
 4. Commit
 
 ### Simple (1 файл, тривиальная)
-1. test-driven-development → red-green-refactor
-2. verification-before-completion
-3. Commit
+1. invoke brainstorming → мини-цикл (черновик → критика → ревизия, 3-5 строк)
+2. test-driven-development → red-green-refactor
+3. verification-before-completion
+4. Commit
 
 ### Bug
 1. systematic-debugging → root cause → hypothesis → implement
@@ -110,13 +111,19 @@ Teammate "tester" — напиши и прогони тесты
 
 ## Gates
 - PM (сложные): сбор требований ПЕРЕД brainstorming
-- Brainstorming (средние + сложные): invoke Skill('brainstorming') ПЕРЕД кодом
+- Brainstorming (ВСЕ задачи): invoke Skill('brainstorming') ПЕРЕД кодом
 - TDD: НЕТ кода без failing test
 - Verification: НЕТ "готово" без evidence
 - 3 failures → escalate
 
-## Error Recovery
-1. Ошибка → исправь
-2. Другой подход → исправь
-3. ПЕРЕД попыткой 3 → WebSearch/context7
-4. После 3 неудач → эскалируй
+## Error Recovery (Think-then-Critique)
+
+Когда что-то сломалось — СТОП. Не чини сразу:
+1. **Диагностика:** что сломалось? Error message, diff, grep по коду
+2. **Root cause:** почему? Не симптом — причина
+3. **2 варианта фикса** + критика каждого (покажи юзеру)
+4. **Выбери лучший** → чини
+5. ПЕРЕД попыткой 3 → WebSearch/context7
+6. После 3 неудач → эскалируй
+
+ЗАПРЕЩЕНО: сразу менять код после ошибки. Сначала Think-then-Critique.
