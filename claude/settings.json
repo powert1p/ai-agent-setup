@@ -27,7 +27,7 @@
       "Bash(rm -rf ~)"
     ]
   },
-  "model": "claude-opus-4-6",
+  "model": "opus[1m]",
   "hooks": {
     "Stop": [
       {
@@ -68,6 +68,23 @@
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/no-code-orchestrator.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/research-first.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Skill",
@@ -75,6 +92,16 @@
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/log-skill.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "WebSearch|WebFetch|mcp__context7__query-docs|mcp__context7__resolve-library-id",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/mark-research-done.sh",
             "timeout": 5
           }
         ]
@@ -130,5 +157,6 @@
       }
     }
   },
-  "agentTeams": true
+  "agentTeams": true,
+  "effortLevel": "max"
 }
