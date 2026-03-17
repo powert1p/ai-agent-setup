@@ -5,7 +5,11 @@
 
 INPUT=$(cat)
 SESSION=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
+TOOL=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
 FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.filePath // ""')
+
+# Логирование — всегда пишем чтобы понять срабатывает ли хук
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) PRE_TOOL_USE session=$SESSION tool=$TOOL path=$FILE_PATH" >> /tmp/claude-hook-debug.log
 
 # Bypass через env
 if [ "$ORCHESTRATOR_CAN_CODE" = "1" ]; then
